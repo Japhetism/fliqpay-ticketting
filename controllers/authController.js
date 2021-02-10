@@ -3,6 +3,7 @@ const {
 } = require('util');
 const jwt = require('jsonwebtoken');
 const User = require('../models/userModel');
+const Role = require('../models/roleModel');
 const AppError = require('../utils/appError');
 
 

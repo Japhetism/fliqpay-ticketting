@@ -9,7 +9,7 @@ exports.deleteOne = Model => async (req, res, next) => {
             return next(new AppError(process.env.HTTP_NOT_FOUND_STATUS_CODE, process.env.ERROR_STATUS, 'No document found with that id'), req, res, next);
         }
 
-        res.status(204).json({
+        res.status(200).json({
             status: process.env.SUCCESS_STATUS,
             data: null
         });
@@ -86,10 +86,8 @@ exports.getAll = Model => async (req, res, next) => {
 
         res.status(200).json({
             status: process.env.SUCCESS_STATUS,
-            results: doc.length,
-            data: {
-                data: doc
-            }
+            count: doc.length,
+            data: doc
         });
 
     } catch (error) {

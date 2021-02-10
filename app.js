@@ -9,6 +9,8 @@ const bodyParser = require('body-parser');
 
 
 const userRoutes = require('./routes/userRoutes');
+const roleRoutes = require('./routes/roleRoutes');
+const statusRoutes = require('./routes/statusRoutes');
 const globalErrHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const app = express();
@@ -46,6 +48,8 @@ app.use(hpp());
 
 // Routes
 app.use('/api/v1', userRoutes)
+app.use('/api/v1', roleRoutes)
+app.use('/api/v1', statusRoutes)
 
 // Handle unexisting routes
 app.use('*', (req, res, next) => {
