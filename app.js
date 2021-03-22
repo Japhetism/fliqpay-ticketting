@@ -11,6 +11,7 @@ const bodyParser = require('body-parser');
 const userRoutes = require('./routes/userRoutes');
 const roleRoutes = require('./routes/roleRoutes');
 const statusRoutes = require('./routes/statusRoutes');
+const supportTicketRoutes = require('./routes/supportTicketRoutes');
 const globalErrHandler = require('./controllers/errorController');
 const AppError = require('./utils/appError');
 const app = express();
@@ -50,6 +51,7 @@ app.use(hpp());
 app.use('/api/v1', userRoutes)
 app.use('/api/v1', roleRoutes)
 app.use('/api/v1', statusRoutes)
+app.use('/api/v1', supportTicketRoutes)
 
 // Handle unexisting routes
 app.use('*', (req, res, next) => {

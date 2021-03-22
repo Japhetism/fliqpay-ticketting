@@ -1,10 +1,10 @@
 const mongoose = require('mongoose');
 const validator = require('validator');
 
-const requestSchema = new mongoose.Schema({
-    user_id: {
-        type: Number,
-        required: true
+const supportTicketSchema = new mongoose.Schema({
+    user: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'User',
     },
     title: {
         type: String,
@@ -14,10 +14,10 @@ const requestSchema = new mongoose.Schema({
         type: String,
         required: true
     },
-    status_id: {
-        type: Number,
-        required: true,
-        default: 1
+    status: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'Status',
+        default: '60238c1238eafc4ee87e504b'
     },
     createdAt: {
         type: Date,
@@ -29,5 +29,5 @@ const requestSchema = new mongoose.Schema({
     }
 });
 
-const Request = mongoose.model('Request', requestSchema);
-module.exports = Request;
+const SupportTicket = mongoose.model('SupportTicket', supportTicketSchema);
+module.exports = SupportTicket;

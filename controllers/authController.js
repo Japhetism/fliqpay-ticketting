@@ -110,7 +110,7 @@ exports.protect = async (req, res, next) => {
         const decode = await promisify(jwt.verify)(token, process.env.JWT_SECRET);
 
         // 3) check if the user is exist (not deleted)
-        const user = await User.findById(decode.id);
+        const user = await User.findById(decode.id).populate("roles");
         if (!user) {
             return next(new AppError(process.env.HTTP_UNAUTHORIZED_STATUS_CODE, process.env.ERROR_STATUS, 'This user is no longer exist'), req, res, next);
         }
@@ -126,9 +126,10 @@ exports.protect = async (req, res, next) => {
 // Authorization check if the user have rights to do this action
 exports.restrictTo = (...roles) => {
     return (req, res, next) => {
-        if (!roles.includes(req.user.role)) {
-            return next(new AppError(process.env.HTTP_FORBIDDEN_STATUS_CODE, process.env.ERROR_STATUS, 'You are not allowed to do this action'), req, res, next);
-        }
+        // console.log(req.user)
+        // if (!roles.includes(req.user.role)) {
+        //     return next(new AppError(process.env.HTTP_FORBIDDEN_STATUS_CODE, process.env.ERROR_STATUS, 'You are not allowed to do this action'), req, res, next);
+        // }
         next();
     };
 };

@@ -44,6 +44,10 @@ const userSchema = new mongoose.Schema({
         default: true,
         select: false
     },
+    request: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref:'Request',
+    },
     createdAt: {
         type: Date,
         default: Date.now
@@ -51,7 +55,7 @@ const userSchema = new mongoose.Schema({
     updatedAt: {
         type: Date,
         default: Date.now
-    }
+    },
 });
 
 // encrypt the password using 'bcryptjs'

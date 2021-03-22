@@ -10,6 +10,10 @@ const statusSchema = new mongoose.Schema({
     description: {
         type: String,
     },
+    supportTicket: {
+        type: mongoose.Schema.Types.ObjectId,
+        ref: 'SupportTicket',
+    },
     createdAt: {
         type: Date,
         default: Date.now
