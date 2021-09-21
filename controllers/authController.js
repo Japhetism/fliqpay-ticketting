@@ -31,7 +31,6 @@ exports.login = async (req, res, next) => {
         const user = await User.findOne({
             email
         }).select('+password').populate("role");
-
         if (!user || !await user.correctPassword(password, user.password)) {
             return next(new AppError(process.env.HTTP_UNAUTHORIZED_STATUS_CODE, process.env.ERROR_STATUS, 'Email or Password is wrong'), req, res, next);
         }
@@ -73,7 +72,6 @@ exports.signup = async (req, res, next) => {
         const user = await User.findOne({
             email
         }).select('+password').populate("role");
-
         const token = createToken(user.id);
 
         user.password = undefined;
