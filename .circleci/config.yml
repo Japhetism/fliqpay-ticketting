@@ -8,7 +8,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          app-name: $HEROKU_STAGING_APP_NAME
+          app-name: $STAGING
 
   test:
     working_directory: ~/repo
@@ -38,7 +38,7 @@ jobs:
       - checkout
       - heroku/install
       - heroku/deploy-via-git:
-          app-name: $HEROKU_PRODUCTION_APP_NAME
+          app-name: $PRODUCTION
 
 workflows:
   stage_test_deploy:
