@@ -43,6 +43,7 @@ jobs:
 workflows:
   stage_test_deploy:
     jobs:
+      - stage
       - test:
           requires:
             - stage
